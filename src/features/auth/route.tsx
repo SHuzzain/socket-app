@@ -1,4 +1,5 @@
 import { RouteObject } from "react-router";
+
 import LoginPage from "./templates/login-page";
 import RegisterPage from "./templates/register-page";
 

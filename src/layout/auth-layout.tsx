@@ -1,5 +1,6 @@
-import { useAuth } from "@/features/auth";
 import { Navigate, Outlet } from "react-router";
+
+import { useAuth } from "@/features/auth";
 
 const AuthLayout = () => {
   const { user } = useAuth();

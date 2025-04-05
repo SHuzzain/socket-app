@@ -1,4 +1,5 @@
 import React from "react";
+
 import QueryProvider from "./query-provider";
 
 const Providers = ({ children }: { children: React.ReactNode }) => {

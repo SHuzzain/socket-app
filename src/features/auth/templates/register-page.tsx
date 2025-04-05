@@ -1,6 +1,8 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+
 import { Button } from "@/components/atoms/button";
+import { Input } from "@/components/atoms/input";
 import {
   Form,
   FormControl,
@@ -8,11 +10,10 @@ import {
   FormItem,
   FormMessage,
 } from "@/components/molecules/form";
-import { Input } from "@/components/atoms/input";
 
-import { useLogin } from "../invoke-api/use-login";
-import { LoginType, registerSchema, RegisterType } from "../schema";
 import FormContainer from "../components/form-container";
+import { useLogin } from "../invoke-api/use-login";
+import { LoginType, RegisterType, registerSchema } from "../schema";
 
 const RegisterPage = () => {
   const { mutate } = useLogin();

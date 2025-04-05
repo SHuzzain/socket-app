@@ -6,14 +6,14 @@ function ErrorPage() {
   console.log({ error });
 
   return (
-    <div className="flex justify-center items-center bg-white h-screen">
+    <div className="flex h-screen items-center justify-center bg-white">
       <section className="flex flex-col items-center">
-        <h1 className="font-bold text-6xl">{"404"}</h1>
-        <h5 className="font-medium text-xl">{"page not found"}</h5>
+        <h1 className="text-6xl font-bold">{"404"}</h1>
+        <h5 className="text-xl font-medium">{"page not found"}</h5>
         <Link
           to={".."}
           relative={"path"}
-          className="bg-blue-400 mt-2 p-4 rounded-full w-40 font-medium text-center capitalize"
+          className="mt-2 w-40 rounded-full bg-blue-400 p-4 text-center font-medium capitalize"
         >
           go back
         </Link>

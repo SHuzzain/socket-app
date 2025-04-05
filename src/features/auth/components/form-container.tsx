@@ -1,3 +1,7 @@
+import React, { useMemo } from "react";
+
+import { Link } from "react-router";
+
 import { Button } from "@/components/atoms/button";
 import {
   Card,
@@ -7,8 +11,6 @@ import {
   CardTitle,
 } from "@/components/atoms/card";
 import DottedSeparator from "@/components/atoms/dotted-separator";
-import React, { useMemo } from "react";
-import { Link } from "react-router";
 
 type Props = {
   children: React.ReactNode;
@@ -31,8 +33,8 @@ const FormContainer = ({ children, formType }: Props) => {
   );
 
   return (
-    <Card className="shadow-none border-none md:w-[487px] size-full">
-      <CardHeader className="flex justify-center items-center p-7 text-center">
+    <Card className="size-full border-none shadow-none md:w-[487px]">
+      <CardHeader className="flex items-center justify-center p-7 text-center">
         <CardTitle className="text-2xl">{config.title}</CardTitle>
 
         {!isLogin && (

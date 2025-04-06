@@ -1,9 +1,9 @@
 import { Navigate, Outlet } from "react-router";
 
-import { useAuth } from "@/features/auth";
+import { useAuthStore } from "@/features/auth";
 
 const AuthLayout = () => {
-  const { user } = useAuth();
+  const { user } = useAuthStore();
 
   return <>{user === null ? <Outlet /> : <Navigate to={"/"} />}</>;
 };

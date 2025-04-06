@@ -5,9 +5,13 @@ import RegisterPage from "@/features/auth/templates/register-page";
 import AuthLayout from "@/layout/auth-layout";
 
 const authRoute: RouteObject = {
-  path: "/",
+  path: "/auth",
   element: <AuthLayout />,
   children: [
+    {
+      index: true,
+      element: <LoginPage />,
+    },
     {
       path: "login",
       element: <LoginPage />,

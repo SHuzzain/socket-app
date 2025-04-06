@@ -11,16 +11,17 @@ export const userSchema = z.object({
   password: z.string().min(8, "Maximum 8 characters"),
   avatar: z.string().url(),
   groupChatIds: z.array(z.string().uuid()),
+  token: z.string().uuid(),
 });
 
 //login schema
-export const loginSchema = userSchema.pick({
+export const loginUserSchema = userSchema.pick({
   email: true,
   password: true,
 });
 
 //register schema
-export const registerSchema = userSchema
+export const registerUserSchema = userSchema
   .pick({
     email: true,
     password: true,
@@ -40,7 +41,10 @@ export const registerSchema = userSchema
     }
   });
 
+export const getUserSchema = userSchema.omit({ password: true });
+
 //type-safe
 export type UserType = z.infer<typeof userSchema>;
-export type LoginType = z.infer<typeof loginSchema>;
-export type RegisterType = z.infer<typeof registerSchema>;
+export type LoginUserType = z.infer<typeof loginUserSchema>;
+export type RegisterUserType = z.infer<typeof registerUserSchema>;
+export type GetUserType = z.infer<typeof getUserSchema>;

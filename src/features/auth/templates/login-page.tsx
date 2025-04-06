@@ -2,31 +2,35 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
 import { Button } from "@/components/atoms/button";
-import { Input } from "@/components/atoms/input";
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormMessage,
-} from "@/components/molecules/form";
+} from "@/components/atoms/form";
+import { Input } from "@/components/atoms/input";
 
 import FormContainer from "../components/form-container";
+import useAuth from "../hooks/use-auth";
 import { useLogin } from "../invoke-api/use-login";
-import { LoginType, loginSchema } from "../schema";
+import { LoginUserType, loginUserSchema } from "../schema";
 
 const LoginPage = () => {
-  const { mutate } = useLogin();
-  const form = useForm<LoginType>({
-    resolver: zodResolver(loginSchema),
+  const { mutateAsync } = useLogin();
+  const { setUser } = useAuth();
+  const form = useForm<LoginUserType>({
+    resolver: zodResolver(loginUserSchema),
     defaultValues: {
       email: "",
       password: "",
     },
   });
 
-  const onSubmit = async (value: LoginType) => {
-    mutate(value);
+  const onSubmit = async (value: LoginUserType) => {
+    const response = await mutateAsync(value);
+
+    setUser(response);
   };
   return (
     <FormContainer formType="login">

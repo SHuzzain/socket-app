@@ -2,23 +2,23 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
 import { Button } from "@/components/atoms/button";
-import { Input } from "@/components/atoms/input";
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormMessage,
-} from "@/components/molecules/form";
+} from "@/components/atoms/form";
+import { Input } from "@/components/atoms/input";
 
 import FormContainer from "../components/form-container";
 import { useLogin } from "../invoke-api/use-login";
-import { LoginType, RegisterType, registerSchema } from "../schema";
+import { RegisterUserType, registerUserSchema } from "../schema";
 
 const RegisterPage = () => {
   const { mutate } = useLogin();
-  const form = useForm<RegisterType>({
-    resolver: zodResolver(registerSchema),
+  const form = useForm<RegisterUserType>({
+    resolver: zodResolver(registerUserSchema),
     defaultValues: {
       email: "",
       password: "",
@@ -27,7 +27,7 @@ const RegisterPage = () => {
     },
   });
 
-  const onSubmit = async (value: LoginType) => {
+  const onSubmit = async (value: RegisterUserType) => {
     mutate(value);
   };
   return (

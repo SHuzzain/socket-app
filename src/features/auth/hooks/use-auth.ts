@@ -1,27 +1,39 @@
 import { create } from "zustand";
+import { createJSONStorage, persist } from "zustand/middleware";
 
-import { UserType } from "../schema";
+import { GetUserType } from "../schema";
 
 type AuthState = {
-  user: UserType | null;
-  token: string | null;
-  setUser: (user: UserType, token?: string) => void;
+  user: GetUserType | null;
+  isAuth: boolean;
+  setUser: (user: GetUserType) => void;
   logout: () => void;
 };
 
-const useAuth = create<AuthState>((set) => ({
-  user: null,
-  token: null,
-  setUser: (user, token) =>
-    set(() => ({
-      user,
-      token,
-    })),
-  logout: () =>
-    set(() => ({
+export const useAuthStore = create<AuthState>()(
+  persist(
+    (set) => ({
       user: null,
-      token: null,
-    })),
-}));
+      isAuth: false,
 
-export default useAuth;
+      setUser: (user) =>
+        set(() => ({
+          user,
+          isAuth: true,
+        })),
+
+      logout: () =>
+        set(() => ({
+          user: null,
+          isAuth: false,
+        })),
+    }),
+    {
+      name: "userToken",
+      storage: createJSONStorage(() => localStorage),
+      partialize: (state) => ({ token: state.user?.token }),
+    }
+  )
+);
+
+export default useAuthStore;

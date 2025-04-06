@@ -1,16 +1,11 @@
 import { useMutation } from "@tanstack/react-query";
 
-import { LoginType } from "../schema";
+import authEndpoint from "../endpoint";
+import { GetUserType, LoginUserType } from "../schema";
 
 export const useLogin = () => {
-  const mutation = useMutation<{ success: boolean }, Error, LoginType>({
-    mutationFn: async (value) => {
-      // api call goes here
-      console.log({ value });
-      return {
-        success: true,
-      };
-    },
+  const mutation = useMutation<GetUserType, Error, LoginUserType>({
+    mutationFn: authEndpoint.login,
   });
 
   return mutation;

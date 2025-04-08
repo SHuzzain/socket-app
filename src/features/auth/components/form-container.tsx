@@ -33,7 +33,7 @@ const FormContainer = ({ children, formType }: Props) => {
   );
 
   return (
-    <Card className="size-full border-none shadow-none md:w-[487px]">
+    <Card className="size-full border-none shadow-none md:w-[487px] mx-auto">
       <CardHeader className="flex items-center justify-center p-7 text-center">
         <CardTitle className="text-2xl">{config.title}</CardTitle>
 
